@@ -43,7 +43,7 @@ public class parkingSlotManager extends Manager {
             ps.setDouble(1, minLat);
             ps.setDouble(2, maxLat);
             ps.setDouble(3, minLon);
-            ps.setDouble(4, maxLat);
+            ps.setDouble(4, maxLon);
             ps.setInt(5, status);
             ps.setInt(6, amount);
 
