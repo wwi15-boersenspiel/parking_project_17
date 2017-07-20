@@ -1,4 +1,4 @@
-import static java.lang.Math.*;
+import datamodel.parkingSlot;
 
 /**
  * Created by lucas on 14.07.2017.

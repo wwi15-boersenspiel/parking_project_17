@@ -1,7 +1,6 @@
+import datamodel.parkingSlot;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.net.Socket;
 
 /**
  * Created by lucas on 14.07.2017.
