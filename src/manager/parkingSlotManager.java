@@ -40,6 +40,8 @@ public class parkingSlotManager extends Manager {
                      "And ? " +
                      "And Lon Between ? And ?" +
                      "And status <= ?" +
+                     "Group By parking_status.sensor_id" +
+                     "Order By parking_status.time" +
                      "LIMIT ?");
              ResultSet rs = ps.executeQuery()) {
 
