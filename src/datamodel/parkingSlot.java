@@ -7,6 +7,7 @@ public class parkingSlot {
     private double longitude;
     private double latitude;
     private int status;
+    public final static String TABLENAME = "parking_spot";
 
     //const
     public static final byte SLOT_TAKEN = 1;

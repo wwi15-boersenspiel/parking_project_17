@@ -7,9 +7,9 @@ import java.util.Properties;
  * Created by Surfen on 20.07.2017.
  */
 public class Manager {
-    protected static final String DBCONNECTION = "";
+    protected static final String DBCONNECTION = "jdbc:" + "mysql" + "://" + "127.0.0.1" + ":" + "3306" + "/" + "parking_project";;
     protected static final String DBUSER = "root";
-    protected static final String DBPASSWORD = "";
+    protected static final String DBPASSWORD = "yourpassword";
 
     private static Properties connectionProps;
     protected Connection conn = null;

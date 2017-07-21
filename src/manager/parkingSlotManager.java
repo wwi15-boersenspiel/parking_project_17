@@ -1,6 +1,7 @@
 package manager;
 
 import datamodel.parkingSlot;
+import datamodel.parkingStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,9 +31,11 @@ public class parkingSlotManager extends Manager {
         double maxLon = longitude + toDegrees(asin(distance / RADIUS_EARTH) / cos(toRadians(latitude)));
         double minLon = longitude - toDegrees(asin(distance / RADIUS_EARTH) / cos(toRadians(latitude)));
 
+        // JOIN Nötig da Status in anderer Tabelle ist
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement("Select Id, latitude, longitude, status " +
-                     "From parking_spot " +
+                     "From " + parkingSlot.TABLENAME + ", " + parkingStatus.TABLENAME + " " +
+                     "INNER JOIN parking_status on parking_slot.id = parking_status.sensor_id " +
                      "Where latitude Between ? " +
                      "And ? " +
                      "And Lon Between ? And ?" +
