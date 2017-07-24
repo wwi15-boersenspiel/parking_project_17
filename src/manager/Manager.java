@@ -7,7 +7,7 @@ import java.util.Properties;
  * Created by Surfen on 20.07.2017.
  */
 public class Manager {
-    protected static final String DBCONNECTION = "jdbc:" + "mysql" + "://" + "127.0.0.1" + ":" + "3306" + "/" + "parking_project";;
+    protected static final String DBCONNECTION = "jdbc:" + "mysql" + "://" + "localhost" + ":" + "3306" + "/" + "parking_project";
     protected static final String DBUSER = "root";
     protected static final String DBPASSWORD = "yourpassword";
 
@@ -35,8 +35,8 @@ public class Manager {
      */
     protected static Connection getConnection() throws SQLException {
         Properties connectionProps = new Properties();
-        connectionProps.put("user", "root");
-        connectionProps.put("password", "");
+        connectionProps.put("user", DBUSER);
+        connectionProps.put("password", DBPASSWORD);
         return DriverManager.getConnection(DBCONNECTION, connectionProps);
     }
 

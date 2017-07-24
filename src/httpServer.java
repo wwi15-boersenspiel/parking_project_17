@@ -7,6 +7,9 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Created by lucas on 19.07.2017.
@@ -30,8 +33,15 @@ public class httpServer extends Thread implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        String response = "<h1>PARKING PROJEKT BEST PROJECT EVER</h1>";
-        httpExchange.sendResponseHeaders(200, response.length());
+        System.out.println("Request:");
+        String requestUrl = httpExchange.getRequestURI().toString();
+        if (requestUrl.equals("/")) {
+            requestUrl = "/index.html";
+        }
+        System.out.println(requestUrl);
+        byte[] encoded = Files.readAllBytes(Paths.get("/home/ubuntu/frontend" + requestUrl));
+        String response =  new String(encoded, StandardCharsets.UTF_8);
+        httpExchange.sendResponseHeaders(200, response.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();

@@ -28,6 +28,8 @@ public class websocketServer extends WebSocketServer {
     public void onOpen(WebSocket conn, ClientHandshake handshake) {
         conns.add(conn);
         System.out.println("New connection from " + conn.getRemoteSocketAddress().getAddress().getHostAddress());
+        conn.send(API.processWSCall());
+
     }
 
     @Override
@@ -40,6 +42,7 @@ public class websocketServer extends WebSocketServer {
     public void onMessage(WebSocket conn, String message) {
         System.out.println("Message from client: " + message);
         for (WebSocket sock : conns) {
+
             sock.send(message);
         }
     }

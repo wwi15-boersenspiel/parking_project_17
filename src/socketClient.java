@@ -1,7 +1,5 @@
 import java.io.*;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.nio.ByteBuffer;
 
 /**
  * Created by lucas on 11.07.2017.
@@ -38,14 +36,14 @@ public class socketClient extends Thread {
             String fromServer = null;
             while ((fromServer = in.readLine()) != null) {
                 System.out.println("Client: " + fromServer);
-                API.processCall(fromServer, this);
+                API.processSocketCall(fromServer, this);
             }
 
             /*while (true) {
                 int input = in.read();
                 if (input != -1) {
                     System.out.println("Client: " + input);
-                    API.processCall("data");
+                    API.processSocketCall("data");
                 } else {
                     System.out.println("Client disconnected");
                     client.close();
