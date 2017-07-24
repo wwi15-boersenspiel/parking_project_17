@@ -13,7 +13,7 @@ import java.util.Collection;
 
 public class API {
 
-    public static void processCall(String data, socketClient client) {
+    public static void processSocketCall(String data, socketClient client) {
         //Switch Case depending on what was called
 
         JSONObject dataObject = new JSONObject(data);
@@ -27,7 +27,7 @@ public class API {
                 returnObject.put("data", "slots");
                 JSONArray spotsArray = new JSONArray();
 
-                for(parkingSlot tmpslot : parkingSlots){
+                for (parkingSlot tmpslot : parkingSlots) {
                     JSONObject spotObject = new JSONObject();
                     spotObject.put("longitude", tmpslot.getLongitude());
                     spotObject.put("latitude", tmpslot.getLatitude());
@@ -42,5 +42,30 @@ public class API {
         }
 
     }
+
+    public static String processWSCall() {
+        //Switch Case depending on what was called
+
+
+        JSONObject returnObject = new JSONObject();
+
+
+        Collection<parkingSlot> parkingSlots = parkingSlotManager.getNearestSlots(0, 0, 10, 3, 100000000);
+        returnObject.put("data", "slots");
+        JSONArray spotsArray = new JSONArray();
+
+        for (parkingSlot tmpslot : parkingSlots) {
+            JSONObject spotObject = new JSONObject();
+            spotObject.put("longitude", tmpslot.getLongitude());
+            spotObject.put("latitude", tmpslot.getLatitude());
+            spotObject.put("status", tmpslot.getStatus());
+            spotsArray.put(spotObject);
+        }
+        returnObject.put("slots", spotsArray);
+        return returnObject.toString();
+
+
+    }
+
 }
 
